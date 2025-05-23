@@ -292,24 +292,27 @@ export function OklchColorDemo() {
         <Card className="p-6 space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between">
-              <Label htmlFor="hue-slider">Teinte (Hue)</Label>
-              <span className="text-muted-foreground">{hue}°</span>
+              <Label htmlFor="lightness-slider">Lightness (Luminosité)</Label>
+              <span className="text-muted-foreground">
+                {lightness.toFixed(2)}
+              </span>
             </div>
             <Input
-              id="hue-slider"
+              id="lightness-slider"
               type="range"
-              min="0"
-              max="360"
-              step="1"
-              value={hue}
-              onChange={handleHueChange}
+              min="0.35"
+              max="0.58"
+              step="0.01"
+              value={lightness}
+              onChange={handleLightnessChange}
               className="w-full h-5 appearance-none rounded-md"
               style={{
-                background: hueSliderBackground,
+                background: lightnessSliderBackground,
                 cursor: 'pointer',
               }}
             />
           </div>
+
           <div className="space-y-2">
             <div className="flex justify-between">
               <Label htmlFor="chroma-slider">Chroma (Saturation)</Label>
@@ -332,22 +335,20 @@ export function OklchColorDemo() {
           </div>
           <div className="space-y-2">
             <div className="flex justify-between">
-              <Label htmlFor="lightness-slider">Luminosité (Lightness)</Label>
-              <span className="text-muted-foreground">
-                {lightness.toFixed(2)}
-              </span>
+              <Label htmlFor="hue-slider">Hue (Teinte)</Label>
+              <span className="text-muted-foreground">{hue}°</span>
             </div>
             <Input
-              id="lightness-slider"
+              id="hue-slider"
               type="range"
               min="0"
-              max="1"
-              step="0.01"
-              value={lightness}
-              onChange={handleLightnessChange}
+              max="360"
+              step="1"
+              value={hue}
+              onChange={handleHueChange}
               className="w-full h-5 appearance-none rounded-md"
               style={{
-                background: lightnessSliderBackground,
+                background: hueSliderBackground,
                 cursor: 'pointer',
               }}
             />

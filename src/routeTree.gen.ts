@@ -11,14 +11,21 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as OklchDemoImport } from './routes/oklch-demo'
+import { Route as ShadeGeneratorImport } from './routes/shade-generator'
+import { Route as GradientImport } from './routes/gradient'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const OklchDemoRoute = OklchDemoImport.update({
-  id: '/oklch-demo',
-  path: '/oklch-demo',
+const ShadeGeneratorRoute = ShadeGeneratorImport.update({
+  id: '/shade-generator',
+  path: '/shade-generator',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GradientRoute = GradientImport.update({
+  id: '/gradient',
+  path: '/gradient',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/oklch-demo': {
-      id: '/oklch-demo'
-      path: '/oklch-demo'
-      fullPath: '/oklch-demo'
-      preLoaderRoute: typeof OklchDemoImport
+    '/gradient': {
+      id: '/gradient'
+      path: '/gradient'
+      fullPath: '/gradient'
+      preLoaderRoute: typeof GradientImport
+      parentRoute: typeof rootRoute
+    }
+    '/shade-generator': {
+      id: '/shade-generator'
+      path: '/shade-generator'
+      fullPath: '/shade-generator'
+      preLoaderRoute: typeof ShadeGeneratorImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/oklch-demo': typeof OklchDemoRoute
+  '/gradient': typeof GradientRoute
+  '/shade-generator': typeof ShadeGeneratorRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/oklch-demo': typeof OklchDemoRoute
+  '/gradient': typeof GradientRoute
+  '/shade-generator': typeof ShadeGeneratorRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/oklch-demo': typeof OklchDemoRoute
+  '/gradient': typeof GradientRoute
+  '/shade-generator': typeof ShadeGeneratorRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/oklch-demo'
+  fullPaths: '/' | '/gradient' | '/shade-generator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/oklch-demo'
-  id: '__root__' | '/' | '/oklch-demo'
+  to: '/' | '/gradient' | '/shade-generator'
+  id: '__root__' | '/' | '/gradient' | '/shade-generator'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OklchDemoRoute: typeof OklchDemoRoute
+  GradientRoute: typeof GradientRoute
+  ShadeGeneratorRoute: typeof ShadeGeneratorRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OklchDemoRoute: OklchDemoRoute,
+  GradientRoute: GradientRoute,
+  ShadeGeneratorRoute: ShadeGeneratorRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/oklch-demo"
+        "/gradient",
+        "/shade-generator"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/oklch-demo": {
-      "filePath": "oklch-demo.tsx"
+    "/gradient": {
+      "filePath": "gradient.tsx"
+    },
+    "/shade-generator": {
+      "filePath": "shade-generator.tsx"
     }
   }
 }

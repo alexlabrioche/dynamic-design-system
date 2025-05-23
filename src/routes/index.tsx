@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { useRandomPoem } from '@/hooks/use-random-poem'
 import { useRandomImage } from '@/hooks/use-random-image'
@@ -41,11 +41,6 @@ function App() {
         poem={poem.data}
         onGenerateNewCard={onGenerateNewCard}
       />
-      <div className="mt-6 mb-2">
-        <Link to="/oklch-demo" className="text-primary hover:underline">
-          démo sliders OKLCH
-        </Link>
-      </div>
     </div>
   )
 }

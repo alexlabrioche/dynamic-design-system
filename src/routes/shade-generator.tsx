@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { OklchColorDemo } from '@/components/theme/oklch-color-demo'
 
-export const Route = createFileRoute('/oklch-demo')({
+export const Route = createFileRoute('/shade-generator')({
   component: OklchDemo,
 })
 
