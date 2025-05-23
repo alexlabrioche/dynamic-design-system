@@ -340,8 +340,8 @@ export function OklchColorDemo() {
             <Input
               id="lightness-slider"
               type="range"
-              min="0"
-              max="1"
+              min="0.35"
+              max="0.58"
               step="0.01"
               value={lightness}
               onChange={handleLightnessChange}
