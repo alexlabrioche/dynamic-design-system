@@ -1,6 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
-import { ThemeSettings } from '@/components/theme'
 import { useRandomPoem } from '@/hooks/use-random-poem'
 import { useRandomImage } from '@/hooks/use-random-image'
 import { useThemeStore } from '@/store/theme-store'
@@ -42,7 +41,11 @@ function App() {
         poem={poem.data}
         onGenerateNewCard={onGenerateNewCard}
       />
-      <ThemeSettings />
+      <div className="mt-6 mb-2">
+        <Link to="/oklch-demo" className="text-primary hover:underline">
+          démo sliders OKLCH
+        </Link>
+      </div>
     </div>
   )
 }

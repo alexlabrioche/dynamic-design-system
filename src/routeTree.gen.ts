@@ -11,9 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as OklchDemoImport } from './routes/oklch-demo'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const OklchDemoRoute = OklchDemoImport.update({
+  id: '/oklch-demo',
+  path: '/oklch-demo',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/oklch-demo': {
+      id: '/oklch-demo'
+      path: '/oklch-demo'
+      fullPath: '/oklch-demo'
+      preLoaderRoute: typeof OklchDemoImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/oklch-demo': typeof OklchDemoRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/oklch-demo': typeof OklchDemoRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/oklch-demo': typeof OklchDemoRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/oklch-demo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/oklch-demo'
+  id: '__root__' | '/' | '/oklch-demo'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OklchDemoRoute: typeof OklchDemoRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OklchDemoRoute: OklchDemoRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/oklch-demo"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/oklch-demo": {
+      "filePath": "oklch-demo.tsx"
     }
   }
 }
